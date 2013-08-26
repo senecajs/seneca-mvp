@@ -7,8 +7,10 @@
 
   var msgmap = {
     'unknown': 'Unable to perform your request at this time - please try again later.',
+    'missing-fields': 'Please enter missing fields.',
     'user-not-found': 'That email address is not recognized.',
     'invalid-password': 'That password is incorrect',
+    'email-exists': 'That email address is already in use. Please login, or ask for a password reset.'
   }
 
 
@@ -17,13 +19,11 @@
       login: function(creds,win,fail){
         $http({method:'POST', url: '/auth/login', data:creds, cache:false}).
           success(function(data, status) {
-            if( data.ok ) {
-              if( win ) return win(data);
-              //return $window.location.href='/account'
-            }
-            else if( fail ) {
-              return fail(data);
-            }
+            if( win ) return win(data);
+            //return $window.location.href='/account'
+          }).
+          error(function(data, status) {
+            if( fail ) return fail(data);
           })
       },
       register: function(details,win,fail){
@@ -84,15 +84,11 @@
         $scope['seek_'+field] = !full
       })
 
-      if( $scope.seek_signin || $scope.seek_signup || $scope.seek_send ) {
-        $scope.msg = 'Please enter missing fields.'
-        $scope.showmsg = true
-      }
-
       $scope.seek_signup = !state.name || !state.email || !state.password
       $scope.seek_signin = !state.email || !state.password
       $scope.seek_send   = !state.email
     }
+
 
 
     function perform_signup() {
@@ -101,8 +97,8 @@
         email:$scope.input_email,
         password:$scope.input_password
       }, null, function( out ){
-        //$scope.msg = 'That email address is already in use. Please login, or ask for a password reset.'
-        $scope.msg = out.why
+        $scope.msg = msgmap[out.why] || msgmap.unknown
+        if( 'email-exists' == out.why ) $scope.seek_email = true;
         $scope.showmsg = true
       })
     }
@@ -178,11 +174,14 @@
       $scope.showmsg = false
 
       var state = read()
+      markinput(state)
+
       if( state.name && state.email && state.password ) {
-        perform_signup();
+        perform_signup()
       }
       else {
-        markinput(state)
+        $scope.msg = msgmap['missing-fields']
+        $scope.showmsg = true
       }
 
       $scope.signup_hit = true
@@ -197,11 +196,17 @@
       $scope.showmsg = false
 
       var state = read()
+
+      if( $scope.signin_hit ) {
+        markinput(state,{name:1})
+      }
+
       if( state.email && state.password ) {
         perform_signin()
       }
-      else if( $scope.signin_hit ) {
-        markinput(state,{name:1})
+      else {
+        $scope.msg = msgmap['missing-fields']
+        $scope.showmsg = true
       }
 
       $scope.signin_hit = true

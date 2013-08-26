@@ -48,30 +48,30 @@
           <form role="form">
             <div ng-class="{'form-group':true,mvp_seek_input:seek_name,animated:true,fadeIn:fadein_name,fadeOut:fadeout_name}">
               <label for="name">Name</label>
-              <input type="text" class="form-control" id="name" placeholder="enter name" ng-model="input_name" xng-change="change('name')">
+              <input type="text" class="form-control" id="name" placeholder="enter name" ng-model="input_name" xng-change="change('name')" tab-index="1">
             </div>
             <div ng-class="{'form-group':true,mvp_seek_input:seek_email}">
               <label for="email">Email</label>
-              <input type="text" class="form-control" id="email" placeholder="enter email" ng-model="input_email" xng-change="change('email')">
+              <input type="text" class="form-control" id="email" placeholder="enter email" ng-model="input_email" xng-change="change('email')" tab-index="2">
             </div>
             <div ng-class="{'form-group':true,mvp_seek_input:seek_password,animated:true,fadeIn:fadein_password,fadeOut:fadeout_password}">
               <label for="password">Password</label>
-              <input type="password" class="form-control" id="password" placeholder="enter password" ng-model="input_password" xng-change="change('password')">
+              <input type="password" class="form-control" id="password" placeholder="enter password" ng-model="input_password" xng-change="change('password')" tab-index="3">
             </div>
           </form>
           <table id="loginbtns"><tr>
-             <td class="left"><a ng-class="{btn:true, 'btn-primary':true, mvp_seek_input:seek_signup, animated:true, fadeIn:fadein_signup, fadeOut:fadeout_signup}" href="#"  ng-click="signup()">Sign Up &raquo;</a></td>
+             <td class="left"><a ng-class="{btn:true, 'btn-primary':true, mvp_seek_input:seek_signup, animated:true, fadeIn:fadein_signup, fadeOut:fadeout_signup}" href="#"  ng-click="signup()" tab-index="5">Sign Up &raquo;</a></td>
 
              <td class="center"><a ng-class="{btn:true, 'btn-primary':true, mvp_hide:hide_cancel, animated:true, fadeIn:fadein_cancel, fadeOut:fadeout_cancel, float:float_cancel}" href="#"  ng-click="cancel()">Cancel</a></td>
 
-             <td class="right"><a ng-class="{btn:true, 'btn-primary':true, mvp_seek_input:seek_signin, mvp_hide:hide_signin, animated:true, fadeIn:fadein_signin, fadeOut:fadeout_signin}" href="#"  ng-click="signin()">Sign In &raquo;</a></td>
+             <td class="right"><a ng-class="{btn:true, 'btn-primary':true, mvp_seek_input:seek_signin, mvp_hide:hide_signin, animated:true, fadeIn:fadein_signin, fadeOut:fadeout_signin}" href="#"  ng-click="signin()" tab-index="4">Sign In &raquo;</a></td>
 
              <td ng-class="{right:true,hide:hide_send}"><a ng-class="{btn:true, 'btn-primary':true, mvp_seek_input:seek_send, animated:true, fadeIn:fadein_send, fadeOut:fadeout_send}" href="#"  ng-click="send()">Send Reset &raquo;</a></td>
           </tr></table>
           <p>
             <a ng-class="{mvp_hide:hide_forgot}" style="clear:both;float:right;margin-top:10px;" href="#" ng-click="forgot()">forgot password?</a>
           </p>
-          <p style="margin-top:40px;" ng-show="showmsg">{{msg}}</p>
+          <p style="margin-top:40px;color:red" ng-show="showmsg">{{msg}}</p>
        </div>
         <div class="col-lg-2"></div>
       </div>
