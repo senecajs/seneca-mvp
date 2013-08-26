@@ -1,9 +1,64 @@
 
 
 #welcome {
-    margin: 100px auto;
+    margin: 200px auto;
+}
+
+
+#loginbtns {
+    width:100%;
+}
+
+#loginbtns td.left {
+    text-align:left;
+}
+#loginbtns td.center {
+    text-align:center;
+}
+#loginbtns td.right {
+    text-align:right;
 }
 
 .footer {
     margin-top: 200px;
+}
+
+
+
+.mvp_hide {
+    visibility: hidden;
+}
+
+div.mvp_seek_input label {
+    font-style:italic;
+    color: red;
+}
+
+div.mvp_seek_input input {
+    border-color: red;
+}
+
+a.mvp_seek_input:hover {
+    background-color:red;
+    color:black;
+}
+div.mvp_seek_input input::-webkit-input-placeholder { /* WebKit browsers */
+    color:    red;
+}
+div.mvp_seek_input input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    red;
+}
+div.mvp_seek_input input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    red;
+}
+div.mvp_seek_input input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    red;
+}
+
+div.mvp_show_input {
+    display:block;
+}
+
+div.mvp_hide_input {
+    display:none;
 }

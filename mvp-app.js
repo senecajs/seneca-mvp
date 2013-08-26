@@ -8,27 +8,60 @@ var express = require('express')
 var seneca = require('seneca')()
 
 
+
+process.on('uncaughtException', function(err) {
+  console.error('uncaughtException:', err.message)
+  console.error(err.stack)
+  process.exit(1)
+})
+
+
+
 seneca.use('options','options.mine.js')
 
 
-
-var options = seneca.export('options')
-var web     = seneca.export('web')
-
-var app = express()
-
-app.use( express.cookieParser() )
-app.use( express.query() )
-app.use( express.bodyParser() )
-app.use( express.methodOverride() )
-app.use( express.json() )
-
-app.use( web )
+seneca.use('user')
+seneca.use('auth')
+//seneca.use('account')
+//seneca.use('project')
 
 
-app.use( express.static(__dirname+options.main.public) )  
 
-app.listen( options.main.port )
 
-seneca.log.info('listen',options.main.port)
+seneca.ready(function(err){
+  if( err ) { 
+    console.error(err.message)
+    process.exit(1)
+  }
+
+
+  var u = seneca.pin({role:'user',cmd:'*'})
+  u.register({nick:'u1',name:'nu1',email:'u1@example.com',password:'u1',active:true})
+  u.register({nick:'u2',name:'nu2',email:'u2@example.com',password:'u2',active:true})
+  u.register({nick:'a1',name:'na1',email:'a1@example.com',password:'a1',active:true,admin:true})
+
+
+
+  var options = seneca.export('options')
+  var web     = seneca.export('web')
+
+  var app = express()
+
+  app.use( express.cookieParser() )
+  app.use( express.query() )
+  app.use( express.bodyParser() )
+  app.use( express.methodOverride() )
+  app.use( express.json() )
+
+  app.use(express.session({secret:'seneca'}))
+
+  app.use( web )
+
+  app.use( express.static(__dirname+options.main.public) )  
+
+  app.listen( options.main.port )
+
+  seneca.log.info('listen',options.main.port)
+})
+
 
