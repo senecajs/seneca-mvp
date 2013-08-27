@@ -1,20 +1,38 @@
 ;(function(){
   function noop(){for(var i=0;i<arguments.length;i++)if('function'==typeof(arguments[i]))arguments[i]()}
+  function empty(val) { return null == val || 0 == ''+val }
 
+  var home_module = angular.module('home',['cookiesModule'])
 
-  var login_module = angular.module('login',['cookiesModule'])
+  home_module.controller('Main', function($scope,$location) {
+    var path = window.location.pathname
+
+    if( 0==path.indexOf('/reset') ) {
+      $scope.show_login = false
+      $scope.show_reset = true
+    }
+    else {
+      $scope.show_login = true
+      $scope.show_reset = false
+    }
+  })
+
 
 
   var msgmap = {
     'unknown': 'Unable to perform your request at this time - please try again later.',
-    'missing-fields': 'Please enter missing fields.',
+    'missing-fields': 'Please enter the missing fields.',
     'user-not-found': 'That email address is not recognized.',
     'invalid-password': 'That password is incorrect',
-    'email-exists': 'That email address is already in use. Please login, or ask for a password reset.'
+    'email-exists': 'That email address is already in use. Please login, or ask for a password reset.',
+    'reset-sent': 'An email with password reset instructions has been sent to you.',
+    'activate-reset': 'Please enter your new password.',
+    'invalid-reset': 'This is not a valid reset.',
+    'reset-done': 'Your password has been reset.'
   }
 
 
-  login_module.service('auth', function($http,$window) {
+  home_module.service('auth', function($http,$window) {
     return {
       login: function(creds,win,fail){
         $http({method:'POST', url: '/auth/login', data:creds, cache:false}).
@@ -26,48 +44,66 @@
             if( fail ) return fail(data);
           })
       },
+
       register: function(details,win,fail){
         $http({method:'POST', url: '/auth/register', data:details, cache:false}).
           success(function(data, status) {
-            if( data.ok ) {
-              if( win ) return win(data);
-              return $window.location.href='/account'
-            }
-            else if( fail ) {
-              return fail(data);
-            }
+            if( win ) return win(data);
+            return $window.location.href='/account'
+          }).
+          error(function(data, status) {
+            if( fail ) return fail(data);
           })
       },
+
       instance: function(win,fail){
         $http({method:'GET', url: '/auth/instance', cache:false}).
           success(function(data, status) {
-            if( data.ok ) {
-              if( win ) return win(data);
-            }
-            else if( fail ) {
-              return fail(data);
-            }
+            if( win ) return win(data);
+          }).
+          error(function(data, status) {
+            if( fail ) return fail(data);
           })
       },
+
       reset: function(creds,win,fail){
-        $http({method:'POST', url: '/auth/reset', data:creds, cache:false}).
+        $http({method:'POST', url: '/auth/reset-create', data:creds, cache:false}).
           success(function(data, status) {
-            if( data.ok ) {
-              if( win ) return win(data);
-            }
-            else if( fail ) {
-              return fail(data);
-            }
+            if( win ) return win(data);
+          }).
+          error(function(data, status) {
+            if( fail ) return fail(data);
           })
       },
+
+      reset_load: function(creds,win,fail){
+        $http({method:'POST', url: '/auth/reset-load', data:creds, cache:false}).
+          success(function(data, status) {
+            if( win ) return win(data);
+          }).
+          error(function(data, status) {
+            if( fail ) return fail(data);
+          })
+      },
+
+      reset_execute: function(creds,win,fail){
+        $http({method:'POST', url: '/auth/reset-execute', data:creds, cache:false}).
+          success(function(data, status) {
+            if( win ) return win(data);
+          }).
+          error(function(data, status) {
+            if( fail ) return fail(data);
+          })
+      },
+
     }
   })
 
 
 
-  login_module.controller('Login', function($scope, $http, auth) {
+  home_module.controller('Login', function($scope, $http, auth) {
 
-    function empty(val) { return null == val || 0 == ''+val }
+
 
     function read() {
       return {
@@ -123,12 +159,14 @@
         email:$scope.input_email,
 
       }, function(){
-        console.log('RESET')
+        $scope.cancel()
+        $scope.msg = msgmap['reset-sent']
+        $scope.showmsg = true
 
       }, function( out ){
-        //$scope.msg = 'That email address is not valid.'
-        $scope.msg = out.why
+        $scope.msg = msgmap[out.why] || msgmap.unknown
         $scope.showmsg = true
+        if( 'user-not-found' == out.why ) $scope.seek_email = true;
       })
     }
 
@@ -277,7 +315,61 @@
 
   })
 
-  $('#name').focus()
+
+
+  home_module.controller('Reset', function($scope, $http, auth) {
+    if( !$scope.show_reset ) return;
+
+    $scope.show_resetpass = true
+    $scope.show_gohome    = false
+
+
+    var path  = window.location.pathname
+    var token = path.replace(/^\/reset\//,'')
+
+    auth.reset_load({
+      token:token
+
+    }, function( out ){
+      $scope.msg = msgmap['activate-reset']
+      $scope.nick = out.nick
+      $scope.show_reset = true
+      
+    }, function( out ){
+      $scope.msg = msgmap['invalid-reset']
+    })
+
+    
+    $scope.reset = function(){
+      $scope.seek_password = empty($scope.input_password)
+      $scope.seek_repeat   = empty($scope.input_repeat)
+      $scope.seek_reset    = $scope.seek_password || $scope.seek_repeat
+
+      if( !$scope.seek_password && !$scope.seek_repeat ) {
+        auth.reset_execute({
+          token:    token,
+          password: $scope.input_password,
+          repeat:   $scope.input_repeat,
+
+        }, function( out ){
+          $scope.msg = msgmap['reset-done']
+          $scope.show_gohome = true
+          $scope.show_resetpass = false
+      
+        }, function( out ){
+          $scope.msg = msgmap['invalid-reset']
+        })
+      }
+      else {
+        $scope.msg = msgmap['missing-fields']
+      }
+    }
+
+    $scope.gohome = function() {
+      window.location.href='/'
+    }
+  })
+
 
 })();
 

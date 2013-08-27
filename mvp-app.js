@@ -57,6 +57,15 @@ seneca.ready(function(err){
 
   app.use( web )
 
+
+  app.use( function( req, res, next ){
+    if( ~req.url.indexOf('/reset') ) {
+      req.url = '/'
+    }
+    next()
+  })
+
+
   app.use( express.static(__dirname+options.main.public) )  
 
   app.listen( options.main.port )
