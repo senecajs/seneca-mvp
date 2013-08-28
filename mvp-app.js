@@ -20,7 +20,7 @@ process.on('uncaughtException', function(err) {
 seneca.use('options','options.mine.js')
 
 
-seneca.use('user')
+seneca.use('user',{confirm:true})
 seneca.use('mail')
 seneca.use('auth')
 //seneca.use('account')
@@ -60,7 +60,9 @@ seneca.ready(function(err){
 
 
   app.use( function( req, res, next ){
-    if( ~req.url.indexOf('/reset') ) {
+    if( 0 == req.url.indexOf('/reset') ||
+        0 == req.url.indexOf('/confirm') ) 
+    {
       req.url = '/'
     }
     next()

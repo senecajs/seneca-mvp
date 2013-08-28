@@ -44,7 +44,9 @@
   <div class="col-lg-4">
     <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis enim sed nunc congue fermentum. Phasellus vitae tincidunt arcu.</h2>
   </div>
-  <div class="col-lg-4" ng-controller="Login">
+
+  <div class="col-lg-4">
+    <div ng-show="!hasuser">
     <form role="form">
       <div ng-class="{'form-group':true,mvp_seek_input:seek_name,animated:true,fadeIn:fadein_name,fadeOut:fadeout_name}">
         <label for="name">Name</label>
@@ -71,8 +73,16 @@
     <p>
       <a ng-class="{mvp_hide:hide_forgot}" style="clear:both;float:right;margin-top:10px;" href="#" ng-click="forgot()">forgot password?</a>
     </p>
+    </div>
+
     <p style="margin-top:40px;color:red" ng-show="showmsg">{{msg}}</p>
  </div>
+
+  <div ng-show="hasuser">
+    <h1>Welcome {{user.name}}!</h1>
+    <a ng-class="{btn:true, 'btn-primary':true }" href="#" ng-click="goaccount()">Your Account &raquo;</a>
+  </div>
+
   <div class="col-lg-2"></div>
 </div>
       </div>
@@ -99,6 +109,23 @@
     <p style="margin-top:40px;color:red">
       {{msg}}
     </p>
+        </div>
+        <div class="col-lg-5">&nbsp;</div>
+      </div>
+
+
+      <div class="row" id="confirm" ng-controller="Confirm" ng-show="show_confirm">
+        <div class="col-lg-5">&nbsp;</div>
+        <div class="col-lg-2">
+          <h1>Confirm Account</h1>
+
+          <p style="">
+            {{msg}}
+          </p>
+
+          <a ng-class="{btn:true, 'btn-primary':true }" href="#" ng-show="show_goaccount" ng-click="goaccount()">Your Account &raquo;</a>
+          <a ng-class="{btn:true, 'btn-primary':true }" href="#" ng-show="show_gohome" ng-click="gohome()">Sign In &raquo;</a>
+
         </div>
         <div class="col-lg-5">&nbsp;</div>
       </div>

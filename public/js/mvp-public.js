@@ -7,14 +7,15 @@
   home_module.controller('Main', function($scope,$location) {
     var path = window.location.pathname
 
-    if( 0==path.indexOf('/reset') ) {
-      $scope.show_login = false
-      $scope.show_reset = true
-    }
-    else {
-      $scope.show_login = true
-      $scope.show_reset = false
-    }
+    var page_login   = true
+    var page_reset   = 0==path.indexOf('/reset')
+    var page_confirm = 0==path.indexOf('/confirm')
+
+    page_login = !page_confirm && !page_reset
+
+    $scope.show_login   = page_login
+    $scope.show_reset   = page_reset
+    $scope.show_confirm = page_confirm
   })
 
 
@@ -29,7 +30,9 @@
     'reset-sent': 'An email with password reset instructions has been sent to you.',
     'activate-reset': 'Please enter your new password.',
     'invalid-reset': 'This is not a valid reset.',
-    'reset-done': 'Your password has been reset.'
+    'reset-done': 'Your password has been reset.',
+    'confirmed': 'Your account has been confirmed',
+    'invalid-confirm-code': 'That confirmation code is not valid.'
   }
 
 
@@ -39,7 +42,7 @@
         $http({method:'POST', url: '/auth/login', data:creds, cache:false}).
           success(function(data, status) {
             if( win ) return win(data);
-            //return $window.location.href='/account'
+            return $window.location.href='/account'
           }).
           error(function(data, status) {
             if( fail ) return fail(data);
@@ -68,7 +71,7 @@
       },
 
       reset: function(creds,win,fail){
-        $http({method:'POST', url: '/auth/reset-create', data:creds, cache:false}).
+        $http({method:'POST', url: '/auth/create_reset', data:creds, cache:false}).
           success(function(data, status) {
             if( win ) return win(data);
           }).
@@ -78,7 +81,7 @@
       },
 
       reset_load: function(creds,win,fail){
-        $http({method:'POST', url: '/auth/reset-load', data:creds, cache:false}).
+        $http({method:'POST', url: '/auth/load_reset', data:creds, cache:false}).
           success(function(data, status) {
             if( win ) return win(data);
           }).
@@ -88,7 +91,17 @@
       },
 
       reset_execute: function(creds,win,fail){
-        $http({method:'POST', url: '/auth/reset-execute', data:creds, cache:false}).
+        $http({method:'POST', url: '/auth/execute_reset', data:creds, cache:false}).
+          success(function(data, status) {
+            if( win ) return win(data);
+          }).
+          error(function(data, status) {
+            if( fail ) return fail(data);
+          })
+      },
+
+      confirm: function(creds,win,fail){
+        $http({method:'POST', url: '/auth/confirm', data:creds, cache:false}).
           success(function(data, status) {
             if( win ) return win(data);
           }).
@@ -102,9 +115,7 @@
 
 
 
-  home_module.controller('Login', function($scope, $http, auth) {
-
-
+  home_module.controller('Login', function($scope, $rootScope, auth) {
 
     function read() {
       return {
@@ -297,7 +308,13 @@
     }
 
 
+    $scope.goaccount = function() {
+      window.location.href='/account'
+    }
+
+
     $scope.mode = 'none'
+    $scope.user = null
 
     $scope.showmsg = false
     $scope.hide_cancel = true
@@ -315,6 +332,13 @@
     $scope.seek_email = false
     $scope.seek_password = false
 
+    $scope.hasuser = !!$scope.user
+
+    auth.instance(function(out){
+      $scope.user = out.user
+      $scope.hasuser = !!$scope.user
+      $rootScope.$emit('instance',{user:out.user})
+    })
   })
 
 
@@ -369,6 +393,42 @@
 
     $scope.gohome = function() {
       window.location.href='/'
+    }
+
+    $scope.goaccount = function() {
+      window.location.href='/account'
+    }
+  })
+
+
+
+  home_module.controller('Confirm', function($scope, $rootScope, auth) {
+    if( !$scope.show_confirm ) return;
+
+    $rootScope.$on('instance', function(event,args){
+      $scope.show_goaccount = !!args.user
+      $scope.show_gohome    = !args.user
+    })
+
+    var path = window.location.pathname
+    var code = path.replace(/^\/confirm\//,'')
+
+    auth.confirm({
+      code:code
+
+    }, function( out ){
+      $scope.msg = msgmap['confirmed']
+
+    }, function( out ){
+      $scope.msg = msgmap['invalid-confirm-code']
+    })
+
+    $scope.gohome = function() {
+      window.location.href='/'
+    }
+
+    $scope.goaccount = function() {
+      window.location.href='/account'
     }
   })
 

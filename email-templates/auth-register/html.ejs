@@ -7,6 +7,13 @@ Hello <%=name%>!
 Thanks for registering!
 </p>
 
+<% if( confirmcode ) { %>
+<p>
+Please confirm your registration by visiting 
+<a href="<%=confirmlink%>"><%=confirmlink%></a>
+</p>
+<% } %>
+
 <p>
 regards,<br>
 Seneca
