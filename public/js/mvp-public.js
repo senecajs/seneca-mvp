@@ -25,6 +25,7 @@
     'user-not-found': 'That email address is not recognized.',
     'invalid-password': 'That password is incorrect',
     'email-exists': 'That email address is already in use. Please login, or ask for a password reset.',
+    'nick-exists': 'That email address is already in use. Please login, or ask for a password reset.',
     'reset-sent': 'An email with password reset instructions has been sent to you.',
     'activate-reset': 'Please enter your new password.',
     'invalid-reset': 'This is not a valid reset.',
@@ -135,6 +136,7 @@
       }, null, function( out ){
         $scope.msg = msgmap[out.why] || msgmap.unknown
         if( 'email-exists' == out.why ) $scope.seek_email = true;
+        if( 'nick-exists'  == out.why ) $scope.seek_email = true;
         $scope.showmsg = true
       })
     }

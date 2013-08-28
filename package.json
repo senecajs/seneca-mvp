@@ -21,6 +21,7 @@
     "seneca-auth": "~0.2.5",
     "seneca": "~0.5.10",
     "underscore": "~1.5.1",
-    "express": "~3.3.5"
+    "express": "~3.3.5",
+    "seneca-mail": "~0.1.2"
   }
 }
