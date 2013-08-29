@@ -65,6 +65,7 @@ seneca.ready(function(err){
     {
       req.url = '/'
     }
+
     next()
   })
 
