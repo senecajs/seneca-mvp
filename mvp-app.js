@@ -23,7 +23,7 @@ seneca.use('options','options.mine.js')
 seneca.use('user',{confirm:true})
 seneca.use('mail')
 seneca.use('auth')
-//seneca.use('account')
+seneca.use('account')
 //seneca.use('project')
 
 

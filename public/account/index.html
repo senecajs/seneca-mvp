@@ -103,7 +103,7 @@
             <button type="submit" class="btn btn-primary" ng-click="update_user()">Update &raquo;</button>
 
             <p class="account_msg">
-              {{account_msg}}
+              {{details_msg}}
             </p>
           </form>
 
@@ -124,6 +124,26 @@
               {{password_msg}}
             </p>
           </form>
+
+
+          <h2>Your Organisation</h2>
+          <form role="form">
+            <div class="form-group">
+              <label for="field_org_name">Name</label>
+              <input type="text" class="form-control half-width" id="field_org_name" ng-model="field_org_name">
+            </div>
+            <div class="form-group">
+              <label for="field_org_web">Website</label>
+              <input type="text" class="form-control half-width" id="field_org_web" ng-model="field_org_web">
+            </div>
+
+            <button type="submit" class="btn btn-primary" ng-click="update_org()">Update &raquo;</button>
+
+            <p class="account_msg">
+              {{org_msg}}
+            </p>
+          </form>
+
 
         </div>
       </div>

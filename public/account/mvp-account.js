@@ -11,6 +11,7 @@
     'user-exists-email': 'A user with that email already exists.',
     'user-exists-nick': 'A user with that username already exists.',
     'password-updated': 'Your password has been updated.',
+    'org-updated': 'Your organisations details have been updated.',
   }
 
 
@@ -57,6 +58,16 @@
             if( fail ) return fail(data);
           })
       },
+
+      update_org: function(fields,win,fail){
+        $http({method:'POST', url: '/account/update', data:fields, cache:false}).
+          success(function(data, status) {
+            if( win ) return win(data);
+          }).
+          error(function(data, status) {
+            if( fail ) return fail(data);
+          })
+      },
     }
   })
 
@@ -95,7 +106,9 @@
 
     auth.instance(function(out){
       $scope.user = out.user
+      $scope.account = out.account
       pubsub.publish('user',[out.user])
+      pubsub.publish('account',[out.account])
     })
 
     pubsub.subscribe('user',function(user){
@@ -127,6 +140,11 @@
       $scope.field_email = user.email
     })
 
+    pubsub.subscribe('account',function(account){
+      $scope.field_org_name  = account.name
+      $scope.field_org_email = account.email
+    })
+
 
     function read_user() {
       return {
@@ -142,6 +160,13 @@
       }
     }
 
+    function read_org() {
+      return {
+        name: $scope.field_org_name,
+        web:  $scope.field_org_web
+      }
+    }
+
 
     $scope.update_user = function() {
       var data = read_user()
@@ -152,7 +177,7 @@
           pubsub.publish('user',[out.user])
         },
         function( out ){
-          $scope.account_msg = msgmap[out.why] || msgmap.unknown          
+          $scope.details_msg = msgmap[out.why] || msgmap.unknown          
         }
       )
     }
@@ -168,6 +193,21 @@
         },
         function( out ){
           $scope.password_msg = msgmap[out.why] || msgmap.unknown          
+        }
+      )
+    }
+
+
+    $scope.update_org = function() {
+      var data = read_org()
+      auth.update_org( 
+        data, 
+        function( out ){
+          $scope.account_msg = msgmap['org-updated']
+          pubsub.publish('account',[out.account])
+        },
+        function( out ){
+          $scope.org_msg = msgmap[out.why] || msgmap.unknown          
         }
       )
     }
