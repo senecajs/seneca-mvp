@@ -142,7 +142,7 @@
 
     pubsub.subscribe('account',function(account){
       $scope.field_org_name  = account.name
-      $scope.field_org_email = account.email
+      $scope.field_org_web   = account.web
     })
 
 
@@ -203,7 +203,7 @@
       auth.update_org( 
         data, 
         function( out ){
-          $scope.account_msg = msgmap['org-updated']
+          $scope.org_msg = msgmap['org-updated']
           pubsub.publish('account',[out.account])
         },
         function( out ){
