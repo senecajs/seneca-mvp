@@ -109,3 +109,8 @@ p.account_msg {
     margin-top: 10px;
     height: 60px;
 }
+
+
+ul.selection-list li {
+    border-bottom: 1px solid #ccc;
+}

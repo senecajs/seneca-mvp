@@ -17,6 +17,7 @@
     'user-exists-nick': 'A user with that username already exists.',
     'password-updated': 'Your password has been updated.',
     'org-updated': 'Your organisations details have been updated.',
+    'project-updated': 'Project updated.',
   }
 
 
@@ -217,7 +218,6 @@
 
     $scope.change_pass = function() {
       var data = read_pass()
-      console.log(data)
       auth.change_password( 
         data, 
         function( out ){
@@ -280,15 +280,17 @@
     $scope.show_projects_list   = true
     $scope.show_project_details = false
 
-    api.call('/project/user_projects',function(out){
-      $scope.projects = out.projects
-    })
+
+    function load_projects() {
+      api.call('/project/user_projects',function(out){
+        $scope.projects = out.projects
+      })
+    }
+
 
     $scope.new_project = function(){ $scope.open_project() }
 
     $scope.open_project = function( projectid ) {
-      console.log('OP '+projectid)
-
       if( void 0 != projectid ) {
         api.call( '/project/load/'+projectid, function( out ){
           if( out.project ) {
@@ -300,19 +302,46 @@
     }
 
     $scope.show_project = function( project ) {
-      project = project || {}
+      $scope.project = (project = project || {})
 
       $scope.field_name = project.name
       $scope.field_code = project.code
 
       $scope.show_projects_list   = false
       $scope.show_project_details = true
+
+      $scope.project_msg = null
     }
 
     $scope.close_project = function() {
       $scope.show_projects_list   = true
       $scope.show_project_details = false
     }
+
+    function read_project() {
+      return {
+        name: $scope.field_name,
+        code: $scope.field_code
+      }
+    }
+
+    $scope.save_project = function() {
+      $scope.project = _.extend($scope.project,read_project())
+
+      api.call( '/project/save', $scope.project, function( out ){
+        if( out.project ) {
+          $scope.show_project(out.project)
+          $scope.project_msg = msgmap['project-updated']
+          pubsub.publish('project.added',[out.project])
+        }
+      }, function( out ){
+        $scope.project_msg = msgmap[out.why] || msgmap.unknown          
+      })   
+    }
+
+    load_projects()
+
+    pubsub.subscribe('project.added',load_projects)
   })
 
 })();

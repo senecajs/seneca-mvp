@@ -15,7 +15,7 @@
   "readmeFilename": "README.md",
   "gitHead": "67fe3330b629831b7a670fee2aa29c48a2e0fd85",
   "dependencies": {
-    "seneca-project": "~0.1.1",
+    "seneca-project": "~0.1.2",
     "seneca-account": "~0.1.4",
     "seneca-user": "~0.2.6",
     "seneca-auth": "~0.2.7",
