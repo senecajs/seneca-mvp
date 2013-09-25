@@ -61,7 +61,7 @@
     <div class="container" style="margin-top:50px" ng-controller="TabView">
 
       <ul class="nav nav-tabs">
-        <li ng-repeat="name in views" ng-class="{active:name==curtab}"><a href="#" ng-click="tabview(name)">{{name}}</a></li>
+        <li ng-repeat="name in views" ng-class="{active:name==curtab}"><a href="" ng-click="tabview(name)">{{name}}</a></li>
       </ul>
 
       <div class="row" ng-show="show_view_Dashboard">
@@ -72,9 +72,7 @@
       </div>
 
       <div class="row" ng-show="show_view_Projects">
-        <div class="col-lg-12">
-          <h2>Projects</h2>
-          <p>Your content.</p>
+        <div class="col-lg-12" ng-include src="'projects.html'">
         </div>
       </div>
 
@@ -161,7 +159,8 @@
     <script src="/bower_components/underscore/underscore-min.js"></script>
     <script src="/bower_components/jquery/jquery.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/js/angular.1.2.0.rc2.min.js"></script>
+    <script src="/js/angular-route.1.2.0.rc2.min.js"></script>
     <script src="/js/cookies.js"></script>
     <script src="/account/mvp-account.js"></script>
   </body>
