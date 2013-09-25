@@ -77,6 +77,33 @@
   })
 
 
+  account_module.service('api', function($http,$window) {
+    return {
+      // GET if no data
+      call: function(path,data,win,fail){
+        if( _.isFunction(data) ) {
+          win = data
+          fail = win
+          data = void 0
+        }
+
+        var params = {
+          method:data?'POST':'GET', 
+          url: path, 
+          data:data, 
+          cache:false}
+
+        $http( params ).
+          success(function(out, status) {
+            if( win ) return win(out);
+          }).
+          error(function(out, status) {
+            if( fail ) return fail(out);
+          })
+      }
+    }
+  })
+
   account_module.service('pubsub', function() {
     var cache = {};
     return {
@@ -246,10 +273,47 @@
       })
   })
 
-  account_module.controller('Projects', function($scope, pubsub) {
-    $scope.projects = ['AAA','BBB']
-  })
 
+  account_module.controller('Projects', function($scope, api, pubsub) {
+    $scope.projects = []
+
+    $scope.show_projects_list   = true
+    $scope.show_project_details = false
+
+    api.call('/project/user_projects',function(out){
+      $scope.projects = out.projects
+    })
+
+    $scope.new_project = function(){ $scope.open_project() }
+
+    $scope.open_project = function( projectid ) {
+      console.log('OP '+projectid)
+
+      if( void 0 != projectid ) {
+        api.call( '/project/load/'+projectid, function( out ){
+          if( out.project ) {
+            $scope.show_project(out.project)
+          }
+        }) 
+      }
+      else $scope.show_project()
+    }
+
+    $scope.show_project = function( project ) {
+      project = project || {}
+
+      $scope.field_name = project.name
+      $scope.field_code = project.code
+
+      $scope.show_projects_list   = false
+      $scope.show_project_details = true
+    }
+
+    $scope.close_project = function() {
+      $scope.show_projects_list   = true
+      $scope.show_project_details = false
+    }
+  })
 
 })();
 

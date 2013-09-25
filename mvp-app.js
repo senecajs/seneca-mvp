@@ -20,11 +20,13 @@ process.on('uncaughtException', function(err) {
 seneca.use('options','options.mine.js')
 
 
+seneca.use('mem-store',{web:{dump:true}})
+
 seneca.use('user',{confirm:true})
 seneca.use('mail')
 seneca.use('auth')
 seneca.use('account')
-//seneca.use('project')
+seneca.use('project')
 
 
 
@@ -36,9 +38,15 @@ seneca.ready(function(err){
   }
 
   var u = seneca.pin({role:'user',cmd:'*'})
-  u.register({nick:'u1',name:'nu1',email:'u1@example.com',password:'u1',active:true})
+  var projectpin = seneca.pin({role:'project',cmd:'*'})
+
+  u.register({nick:'u1',name:'nu1',email:'u1@example.com',password:'u1',active:true}, function(err,out){
+    projectpin.create( {account:out.user.accounts[0],name:'p1'} )
+  })
   u.register({nick:'u2',name:'nu2',email:'u2@example.com',password:'u2',active:true})
   u.register({nick:'a1',name:'na1',email:'a1@example.com',password:'a1',active:true,admin:true})
+
+  
 
 
   var options = seneca.export('options')
