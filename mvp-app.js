@@ -28,6 +28,7 @@ seneca.use('auth')
 seneca.use('account')
 seneca.use('project')
 
+//seneca.use('settings')
 
 
 
@@ -46,6 +47,8 @@ seneca.ready(function(err){
   u.register({nick:'u2',name:'nu2',email:'u2@example.com',password:'u2',active:true})
   u.register({nick:'a1',name:'na1',email:'a1@example.com',password:'a1',active:true,admin:true})
 
+
+  //seneca.act('role:settings, cmd:define_spec, kind:user, spec:{foo:"string"}')
   
 
 
