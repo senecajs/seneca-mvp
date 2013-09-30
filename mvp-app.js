@@ -28,7 +28,7 @@ seneca.use('auth')
 seneca.use('account')
 seneca.use('project')
 
-//seneca.use('settings')
+seneca.use('settings')
 
 
 
@@ -43,13 +43,14 @@ seneca.ready(function(err){
 
   u.register({nick:'u1',name:'nu1',email:'u1@example.com',password:'u1',active:true}, function(err,out){
     projectpin.save( {account:out.user.accounts[0],name:'p1'} )
+    seneca.act('role:settings, cmd:save, kind:user, data:{foo:"aaa"}, user:"'+out.user.id+'"')
   })
   u.register({nick:'u2',name:'nu2',email:'u2@example.com',password:'u2',active:true})
   u.register({nick:'a1',name:'na1',email:'a1@example.com',password:'a1',active:true,admin:true})
 
 
-  //seneca.act('role:settings, cmd:define_spec, kind:user, spec:{foo:"string"}')
-  
+  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{foo:"string"}')
+
 
 
   var options = seneca.export('options')
@@ -84,6 +85,8 @@ seneca.ready(function(err){
   app.listen( options.main.port )
 
   seneca.log.info('listen',options.main.port)
+
+  seneca.listen()
 })
 
 
