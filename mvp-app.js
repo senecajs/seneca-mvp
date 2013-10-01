@@ -30,6 +30,36 @@ seneca.use('project')
 
 seneca.use('settings')
 
+/*
+seneca.add('role:entity, cmd:load, name:user, base:sys', function(args,done){
+  console.log('LOAD USER')
+  this.prior(args,done)
+})
+*/
+
+/*
+var userent = seneca.make('sys/user')
+seneca.add('role:user, cmd:login', function(args,done){
+  var seneca = this
+
+  userent.load$({nick:args.nick}, function(err,user){
+    if( err ) return done(err);
+    if( user ) return seneca.prior(args,done);
+
+    seneca.act('role:user, cmd:register', {nick:args.nick,active:true}, function(err,out){
+      if( err ) return done(err);
+      if( !out.ok ) return done(null,out);
+
+      args.user = out.user
+      return seneca.prior(args,done);
+    })
+  })
+})
+
+seneca.add('role:user, cmd:verify_password', function(args,done){
+  done(null,{ok:true})
+})
+*/
 
 
 seneca.ready(function(err){
@@ -87,6 +117,7 @@ seneca.ready(function(err){
   seneca.log.info('listen',options.main.port)
 
   seneca.listen()
+
 })
 
 
