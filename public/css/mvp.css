@@ -167,3 +167,7 @@ table#seneca-settings td:nth-child(2) {
     content: "\f005";
     color: #e3cf7a;
 }
+
+.rating span.star:hover:before {
+    color: #cfb02c;
+}
