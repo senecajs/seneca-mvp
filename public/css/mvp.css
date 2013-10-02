@@ -114,3 +114,22 @@ p.account_msg {
 ul.selection-list li {
     border-bottom: 1px solid #ccc;
 }
+
+/* Settings */
+table#seneca-settings {
+    margin: 20px;
+}
+
+table#seneca-settings td {
+}
+
+table#seneca-settings td:first-child {
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+table#seneca-settings td:nth-child(2) {
+    padding: 10px;
+    max-width: 40%;
+}
