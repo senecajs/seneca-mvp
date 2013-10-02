@@ -79,8 +79,24 @@ seneca.ready(function(err){
   u.register({nick:'a1',name:'na1',email:'a1@example.com',password:'a1',active:true,admin:true})
 
 
-  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{foo:"string"}')
-
+  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{a:{"type":"text", "nice":"A", "help":"Example of text."}}')
+  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{b:{"type":"email", "nice":"B", "help":"Example of email."}}')
+  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{c:{"type":"tel", "nice":"C", "help":"Example of tel."}}')
+  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{d:{"type":"number", "nice":"D", "help":"Example of number."}}')
+  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{e:{"type":"time", "nice":"E", "help":"Example of time."}}')
+  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{f:{"type":"date", "nice":"F", "help":"Example of date."}}')
+  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{g:{"type":"datetime", "nice":"G", "help":"Example of datetime."}}')
+  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{h:{"type":"color", "nice":"H", "help":"Example of color."}}')
+  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{i:{"type":"url", "nice":"I", "help":"Example of url."}}')
+  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{j:{"type":"checkbox", "nice":"J", "help":"Example of checkbox."}}')
+  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{k:{"type":"range", "nice":"K", "help":"Example of range."}}')
+  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{l:{"type":"rating", "nice":"L", "help":"Example of rating."}}')
+  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{m:{"type":"yesno", "nice":"M", "help":"Example of yesno."}}')
+  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{n:{"type":"onoff", "nice":"N", "help":"Example of onoff slider."}}')
+  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{o:{"type":"selectbuttons", "nice":"O", "help":"Example of selectbuttons.", "options" : ["foo", "bar", "baz"]}}')
+  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{p:{"type":"selectdropdown", "nice":"P", "help":"Example of selectdropdown.", "options" : ["foo", "bar", "baz"]}}')
+  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{q:{"type":"selectdropdownplus", "nice":"Q", "help":"Example of selectdropdownplus.", "options" : ["foo", "bar", "baz"]}}')
+  seneca.act('role:settings, cmd:define_spec, kind:user, spec:{r:{"type":"longtext", "nice":"R", "help":"Example of longtext."}}')
 
 
   var options = seneca.export('options')
