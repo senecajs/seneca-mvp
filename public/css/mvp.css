@@ -114,3 +114,60 @@ p.account_msg {
 ul.selection-list li {
     border-bottom: 1px solid #ccc;
 }
+
+/* Settings */
+table#seneca-settings {
+    margin: 20px;
+}
+
+table#seneca-settings td {
+}
+
+table#seneca-settings td:first-child {
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+table#seneca-settings td:nth-child(2) {
+    padding: 10px;
+    max-width: 40%;
+}
+
+
+.rating {
+    unicode-bidi:bidi-override;
+    direction:rtl;
+    font-size:30px;
+}
+
+.rating span.star {
+    font-family:FontAwesome;
+    font-weight:normal;
+    font-style:normal;
+    display:inline-block;
+}
+
+.rating span.star:hover{
+    cursor:pointer;
+}
+
+.rating span.star:before{
+    content:"\f006";
+    padding-right:5px;
+    color:#999999;
+}
+
+.rating span.star-active:before {
+    content: "\f005";
+    color: #e3cf7a;
+}
+
+.rating span.star:hover:before, .rating span.star:hover ~ span.star:before {
+    content: "\f005";
+    color: #e3cf7a;
+}
+
+.rating span.star:hover:before {
+    color: #cfb02c;
+}
