@@ -40,10 +40,11 @@ module.exports = {
       ll:{"type":"rating", "nice":"LL", "help":"Example of rating."},
       m:{"type":"yesno", "nice":"M", "help":"Example of yesno."},
       n:{"type":"onoff", "nice":"N", "help":"Example of onoff slider.", "default" : 0},
-      o:{"type":"selectbuttons", "nice":"O", "help":"Example of selectbuttons.", "options" : ["foo", "bar", "baz"]},
-      p:{"type":"selectdropdown", "nice":"P", "help":"Example of selectdropdown.", "options" : ["foo", "bar", "baz"]},
-      q:{"type":"selectdropdownplus", "nice":"Q", "help":"Example of selectdropdownplus.", "options" : ["foo", "bar", "baz"]},
+      o:{"type":"buttons", "nice":"O", "help":"Example of buttons.", "options" : ["foo", "bar", "baz"]},
+      p:{"type":"dropdown", "nice":"P", "help":"Example of dropdown.", "options" : ["foo", "bar", "baz"]},
+      q:{"type":"dropdownplus", "nice":"Q", "help":"Example of dropdownplus.", "options" : ["foo", "bar", "baz"]},
       r:{"type":"longtext", "nice":"R", "help":"Example of longtext."},
+      s:{"type":"radio", "nice":"S", "help":"Example of radio.", "options" : ["foo", "bar", "baz"]},
     }
   }
 

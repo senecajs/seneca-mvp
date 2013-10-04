@@ -42,7 +42,7 @@ seneca.ready(function(err){
 
   u.register({nick:'u1',name:'nu1',email:'u1@example.com',password:'u1',active:true}, function(err,out){
     projectpin.save( {account:out.user.accounts[0],name:'p1'} )
-    seneca.act('role:settings, cmd:save, kind:user, data:{foo:"aaa"}, user:"'+out.user.id+'"')
+    seneca.act('role:settings, cmd:save, kind:user, settings:{a:"aaa"}, ref:"'+out.user.id+'"')
   })
   u.register({nick:'u2',name:'nu2',email:'u2@example.com',password:'u2',active:true})
   u.register({nick:'a1',name:'na1',email:'a1@example.com',password:'a1',active:true,admin:true})
