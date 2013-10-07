@@ -11,6 +11,9 @@
             when('/Settings', {
               tab:'Settings'
             }).
+            when('/Account', {
+              tab:'Account'
+            }).
             otherwise({tab:'Dashboard'})}])
 
   var msgmap = {
@@ -255,6 +258,8 @@
     $scope.views = _.filter(views,function(n){return n!='Account'})
 
     pubsub.subscribe('view',function(name){
+      console.log('fired:'+name)
+
       _.each(views,function(v){
         $scope['show_view_'+v] = (name==v)
       })
