@@ -97,6 +97,18 @@ div.mvp_hide_input {
 }
 
 
+.subscribe {
+  margin: 100px auto;
+}
+
+.subscribe .well.product {
+  padding-right: 20px;
+
+  cursor: pointer;
+  text-align: center;
+}
+
+
 
 
 body.account {

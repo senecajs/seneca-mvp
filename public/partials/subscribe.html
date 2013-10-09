@@ -1,0 +1,67 @@
+
+<div class="row subscribe" id="subscribe-sign-in" ng-show="show_login">
+  <div class="col-lg-offset-4 col-lg-4">
+    <div>
+        <p></p>
+    </div>
+    <div>
+      <div
+          ng-class="{'form-group':true,mvp_seek_input:seek_name}">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" name="name" placeholder="enter name" ng-model="input_name"
+               tab-index="1">
+      </div>
+      <div ng-class="{'form-group':true,mvp_seek_input:seek_email}">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" name="email" placeholder="enter email" ng-model="input_email"
+               tab-index="2">
+      </div>
+      <div
+          ng-class="{'form-group':true,mvp_seek_input:seek_password}">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" placeholder="enter password" ng-model="input_password" tab-index="3">
+      </div>
+      <a ng-class="{btn:true, 'btn-primary':true, mvp_seek_input:seek_signup, animated:true, fadeIn:fadein_signup, fadeOut:fadeout_signup}"
+         href ng-click="signup()" tab-index="5">Continue &raquo;</a>
+      <p style="margin-top:40px;color:red" ng-show="showmsg">{{msg}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="row subscribe" id="subscribe-select-package" ng-show="show_package">
+  <div class="col-lg-2"></div>
+  <div class="col-lg-8">
+    <div class="row">
+      <div class="col-lg-4" ng-repeat="package in packages">
+        <div class="well product">
+          <h2>{{package.name}}</h2>
+          <p>{{package.description}}</p>
+          <h2>{{package.priceTag}}</h2>
+          <a ng-class="{btn:true, 'btn-primary':true}" href ng-click="buy(package)">Upgrade &raquo;</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12" style="text-align: center">
+        <div ng-show="hasuser">
+          <a ng-class="{btn:true, 'btn-primary':true }" href ng-click="goaccount()">No, thanks &raquo;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-2"></div>
+
+  <form role="form" id="payform" action="/pay/paypal-express/pay" method="post" style="display:none">
+    <input type="hidden" id="refno" name="refno" value="" />
+    <input type="hidden" id="name" name="name" value="{{input_name}}" />
+    <input type="hidden" id="email" name="email" value="{{input_email}}" />
+    <input type="hidden" id="code" name="code" value="" />
+    <input type="hidden" id="plan" name="plan" value="" />
+    <input type="hidden" id="itemName" name="itemName" value="" />
+    <input type="hidden" id="itemAmount" name="itemAmount" value="" />
+    <input type="hidden" id="itemDescription" name="itemDescription" value="" />
+    <input type="hidden" id="amount" name="amount" value="" />
+    <input type="hidden" id="currencyCode" name="currencyCode" value="USD" />
+    <input type="hidden" id="priceTag" name="priceTag" value="" />
+  </form>
+</div>

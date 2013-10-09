@@ -23,6 +23,41 @@ module.exports = {
     }
   },
 
+  pay: {
+    paypal: {
+      useSandbox: true,
+      username: "sdk-three_api1.sdk.com",
+      password: "QFZCWN5HZM8VBG7Q",
+      signature: "A-IzJhZZjhg29XQ2qnhapuwxIDzyAZQ92FRP5dqBzVesOkzbdUONzmOU"
+    },
+    redirect: {
+      success: "/subscribe/completed",
+      fail: "/subscribe/cancelled"
+    }
+  },
+
+  subscribe: {
+    packages: [{
+      name: 'Bronze',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis enim sed nunc congue fermentum. Phasellus vitae tincidunt arcu.',
+      code: 'bronze',
+      price: 19,
+      priceTag: '$19'
+    }, {
+      name: 'Silver',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis enim sed nunc congue fermentum. Phasellus vitae tincidunt arcu.',
+      code: 'silver',
+      price: 49,
+      priceTag: '$49'
+    }, {
+      name: 'Gold',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis enim sed nunc congue fermentum. Phasellus vitae tincidunt arcu.',
+      code: 'gold',
+      price: 99,
+      priceTag: '$99'
+    }]
+  },
+
   settings: {
     spec: {
       a:{"type":"text", "nice":"A", "help":"Example of text."},
