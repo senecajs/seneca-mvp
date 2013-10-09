@@ -80,6 +80,17 @@
         <div class="col-lg-12">
           <h2>Account</h2>
 
+          <h2>Active Plan</h2>
+          <form role="form">
+            <div class="form-group">
+                <input type="text" class="form-control half-width" value="{{user.plan||'free'}}">
+            </div>
+            <a ng-class="{btn:true, 'btn-primary':true }" href ng-click="upgrade_plan()">Upgrade &raquo;</a>
+
+            <p class="account_msg">
+            </p>
+          </form>
+
           <h2>Your Details</h2>
           <form role="form">
             <div class="form-group">

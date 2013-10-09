@@ -177,6 +177,8 @@
     pubsub.subscribe('user',function(user){
       $scope.field_name  = user.name
       $scope.field_email = user.email
+
+      $scope.user = user;
     })
 
     pubsub.subscribe('account',function(account){
@@ -249,6 +251,11 @@
         }
       )
     }
+
+    $scope.upgrade_plan = function() {
+      window.location.href='/#/subscribe'
+    }
+
   })
 
 

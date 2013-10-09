@@ -27,8 +27,12 @@ seneca.use('mail')
 seneca.use('auth')
 seneca.use('account')
 seneca.use('project')
+seneca.use('pay')
 
 seneca.use('settings')
+
+
+seneca.use(require('./lib/subscribe'));
 
 
 
@@ -71,6 +75,18 @@ seneca.ready(function(err){
     {
       req.url = '/'
     }
+
+    /*
+    if ( 0 == req.url.indexOf('/subscribe/cancelled')) {
+      res.redirect('/#/subscribe/cancelled');
+      return res.end();
+    }
+
+    if ( 0 == req.url.indexOf('/subscribe/completed')) {
+      res.redirect('/#/subscribe/completed');
+      return res.end();
+    }
+    */
 
     next()
   })
