@@ -563,7 +563,9 @@
       $('#payform [name=amount]').val(package.price);
       $('#payform [name=code]').val(package.code);
       $('#payform [name=plan]').val(package.code);
-      $('#payform [name=description]').val(package.description);
+      $('#payform [name=itemName]').val('Seneca-MVP ' + package.name + ' package');
+      $('#payform [name=itemDescription]').val(package.description);
+      $('#payform [name=itemAmount]').val(package.price);
       $('#payform [name=pricetag]').val(package.priceTag);
       $('#payform [name=refno]').val($scope.user.id + '-' + new Date().getTime());
 
