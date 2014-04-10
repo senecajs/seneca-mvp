@@ -1,9 +1,15 @@
-/* Copyright (c) 2013 Richard Rodger, MIT License */
+/* Copyright (c) 2013-2014 Richard Rodger, MIT License */
 "use strict";
 
 
 var _       = require('underscore')
 var express = require('express')
+
+var cookieparser = require('cookie-parser')
+var qs           = require('qs')
+var bodyparser   = require('body-parser')
+var session      = require('express-session')
+
 
 var seneca = require('seneca')()
 
@@ -27,8 +33,9 @@ seneca.use('mail')
 seneca.use('auth')
 seneca.use('account')
 seneca.use('project')
-
 seneca.use('settings')
+seneca.use('data-editor')
+seneca.use('admin')
 
 
 
@@ -54,16 +61,14 @@ seneca.ready(function(err){
 
   var app = express()
 
-  app.use( express.cookieParser() )
-  app.use( express.query() )
-  app.use( express.bodyParser() )
-  app.use( express.methodOverride() )
-  app.use( express.json() )
 
-  app.use(express.session({secret:'seneca'}))
+  app.use( cookieparser() )
+  app.use( bodyparser() )
+
+  app.use( session({secret:'seneca'}) )
 
   app.use( web )
-
+  
 
   app.use( function( req, res, next ){
     if( 0 == req.url.indexOf('/reset') ||
