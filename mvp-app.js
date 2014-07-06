@@ -43,6 +43,7 @@ seneca.ready(function(err){
   if( err ) return process.exit( !console.error(err) );
 
   var options = seneca.export('options')
+  //console.log(options.main)
 
   var u = seneca.pin({role:'user',cmd:'*'})
   var projectpin = seneca.pin({role:'project',cmd:'*'})
