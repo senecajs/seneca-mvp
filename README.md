@@ -1,6 +1,8 @@
 seneca-mvp
 ==========
 
+How to build a Minimim Viable Product with Seneca
+
 ## Setup
 
 ```bash
