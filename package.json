@@ -19,7 +19,7 @@
     "underscore": "~1.6.0",
     "seneca-jsonrest-api": "~0.2.1",
     "seneca-account": "~0.1.6",
-    "seneca-user": "~0.2.8",
+    "seneca-user": "~0.2.10",
     "seneca-perm": "~0.1.2",
     "seneca-project": "~0.1.4",
     "express": "~4.0.0",
