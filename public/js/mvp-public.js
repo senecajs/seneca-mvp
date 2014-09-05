@@ -124,7 +124,7 @@
         password: !empty($scope.input_password)
       }
     }
-    
+
 
     function markinput(state,exclude) {
       _.each( state, function( full, field ){
@@ -211,7 +211,7 @@
           $scope['fadeout_'+name] = true
         }
       })
-      
+
       if( fademap.cancel ) {
         $scope.float_cancel = $scope.fadein_signup ? 'right' : 'left'
       }
@@ -351,7 +351,7 @@
 
 
     var path  = window.location.pathname
-    var token = path.replace(/^\/reset\//,'')
+    var token = path.replace(/^\/reset\//,'').replace(/\/$/,'')
 
     auth.reset_load({
       token:token
@@ -360,12 +360,12 @@
       $scope.msg = msgmap['activate-reset']
       $scope.nick = out.nick
       $scope.show_reset = true
-      
+
     }, function( out ){
       $scope.msg = msgmap['invalid-reset']
     })
 
-    
+
     $scope.reset = function(){
       $scope.seek_password = empty($scope.input_password)
       $scope.seek_repeat   = empty($scope.input_repeat)
@@ -381,7 +381,7 @@
           $scope.msg = msgmap['reset-done']
           $scope.show_gohome = true
           $scope.show_resetpass = false
-      
+
         }, function( out ){
           $scope.msg = msgmap['invalid-reset']
         })
