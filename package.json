@@ -1,6 +1,6 @@
 {
   "name": "seneca-mvp",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "How to build a Minimim Viable Product with Seneca",
   "main": "mvp-app.js",
   "scripts": {
@@ -23,7 +23,7 @@
     "seneca-project": "~0.1.4",
     "express": "~4.0.0",
     "seneca-admin": "~0.1.4",
-    "seneca": "~0.5.17",
+    "seneca": "~0.5.20",
     "seneca-data-editor": "~0.1.6",
     "seneca-mail": "~0.1.4",
     "seneca-auth": "~0.3.0",
