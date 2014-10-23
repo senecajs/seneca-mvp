@@ -61,9 +61,9 @@ seneca.ready(function(err){
 
 
   app.use( cookieparser() )
-  app.use( bodyparser() )
+  app.use( bodyparser.json() )
 
-  app.use( session({secret:'seneca'}) )
+  app.use( session({secret:'seneca', resave: true, saveUninitialized: true }) )
 
   app.use( web )
 
