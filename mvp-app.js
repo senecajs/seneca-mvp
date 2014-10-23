@@ -2,11 +2,9 @@
 "use strict";
 
 
-var _       = require('underscore')
 var express = require('express')
 
 var cookieparser = require('cookie-parser')
-var qs           = require('qs')
 var bodyparser   = require('body-parser')
 var session      = require('express-session')
 
@@ -35,7 +33,6 @@ seneca.use('account')
 seneca.use('project')
 seneca.use('settings')
 seneca.use('data-editor')
-seneca.use('admin')
 
 
 
@@ -64,12 +61,13 @@ seneca.ready(function(err){
 
 
   app.use( cookieparser() )
-  app.use( bodyparser() )
+  app.use( bodyparser.json() )
 
-  app.use( session({secret:'seneca'}) )
+  app.use( session({secret:'seneca', resave: true, saveUninitialized: true }) )
 
   app.use( web )
-  
+
+  seneca.use('admin', {server:app,local:true});
 
   app.use( function( req, res, next ){
     if( 0 == req.url.indexOf('/reset') ||
