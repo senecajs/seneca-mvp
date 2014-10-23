@@ -15,7 +15,6 @@
   "readmeFilename": "README.md",
   "dependencies": {
     "seneca-settings": "~0.1.4",
-    "underscore": "~1.6.0",
     "seneca-jsonrest-api": "~0.2.1",
     "seneca-account": "~0.1.8",
     "seneca-user": "~0.2.10",

@@ -2,7 +2,6 @@
 "use strict";
 
 
-var _       = require('underscore')
 var express = require('express')
 
 var cookieparser = require('cookie-parser')
