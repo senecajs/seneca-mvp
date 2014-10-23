@@ -5,7 +5,6 @@
 var express = require('express')
 
 var cookieparser = require('cookie-parser')
-var qs           = require('qs')
 var bodyparser   = require('body-parser')
 var session      = require('express-session')
 

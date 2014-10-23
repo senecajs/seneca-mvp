@@ -26,7 +26,6 @@
     "seneca-data-editor": "~0.1.6",
     "seneca-mail": "~0.1.4",
     "seneca-auth": "~0.3.0",
-    "qs": "~0.6.6",
     "cookie-parser": "~1.0.1",
     "body-parser": "~1.0.1",
     "express-session": "~1.0.2"
