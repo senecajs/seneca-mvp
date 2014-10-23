@@ -35,7 +35,6 @@ seneca.use('account')
 seneca.use('project')
 seneca.use('settings')
 seneca.use('data-editor')
-seneca.use('admin')
 
 
 
@@ -69,7 +68,8 @@ seneca.ready(function(err){
   app.use( session({secret:'seneca'}) )
 
   app.use( web )
-  
+
+  seneca.use('admin', {server:app,local:true});
 
   app.use( function( req, res, next ){
     if( 0 == req.url.indexOf('/reset') ||
