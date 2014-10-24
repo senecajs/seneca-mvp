@@ -2,6 +2,8 @@
 "use strict";
 
 
+var http = require('http')
+
 var express = require('express')
 
 var cookieparser = require('cookie-parser')
@@ -57,6 +59,7 @@ seneca.ready(function(err){
 
   var web = seneca.export('web')
 
+
   var app = express()
 
 
@@ -66,8 +69,6 @@ seneca.ready(function(err){
   app.use( session({secret:'seneca', resave: true, saveUninitialized: true }) )
 
   app.use( web )
-
-  seneca.use('admin', {server:app,local:true});
 
   app.use( function( req, res, next ){
     if( 0 == req.url.indexOf('/reset') ||
@@ -82,7 +83,13 @@ seneca.ready(function(err){
 
   app.use( express.static(__dirname+options.main.public) )  
 
-  app.listen( options.main.port )
+
+
+  var server = http.createServer(app)
+
+  seneca.use('admin', {server:server,local:true});
+
+  server.listen( options.main.port )
 
   seneca.log.info('listen',options.main.port)
 
