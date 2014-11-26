@@ -22,6 +22,7 @@
     "seneca-project": "~0.1.4",
     "express": "^4.0.0",
     "seneca-admin": "~0.1.4",
+    "nodemailer-smtp-transport": "^0.1.13",
     "seneca": "~0.5.20",
     "seneca-data-editor": "~0.1.6",
     "seneca-mail": "~0.1.4",
