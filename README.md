@@ -1,7 +1,7 @@
 seneca-mvp
 ==========
 
-How to build a Minimim Viable Product with Seneca
+How to build a Minimum Viable Product with Seneca
 
 ## Setup
 

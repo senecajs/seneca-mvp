@@ -2,7 +2,7 @@
   function noop(){for(var i=0;i<arguments.length;i++)if('function'==typeof(arguments[i]))arguments[i]()}
   function empty(val) { return null == val || 0 == ''+val }
 
-  var account_module = angular.module('account',['ngRoute','cookiesModule','senecaSettingsModule']).
+  var account_module = angular.module('account',['ngRoute','ngCookies','senecaSettingsModule']).
         config(['$routeProvider', function($routeProvider) {
           $routeProvider.
             when('/Projects', {

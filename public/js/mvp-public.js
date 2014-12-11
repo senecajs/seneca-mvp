@@ -2,7 +2,7 @@
   function noop(){for(var i=0;i<arguments.length;i++)if('function'==typeof(arguments[i]))arguments[i]()}
   function empty(val) { return null == val || 0 == ''+val }
 
-  var home_module = angular.module('home',['cookiesModule'])
+  var home_module = angular.module('home',['ngCookies'])
 
   home_module.controller('Main', function($scope,$location) {
     var path = window.location.pathname

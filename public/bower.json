@@ -15,9 +15,11 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.2.0",
+    "bootstrap": "^3.2.0",
     "lodash": "^2.4.1",
-    "jquery": "~2.1.1",
-    "angular": "*"
+    "jquery": "^2.1.1",
+    "angular": "*",
+    "angular-route": "*",
+    "angular-cookies": "*"
   }
 }
