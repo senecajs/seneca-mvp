@@ -18,7 +18,7 @@
     "cookie-parser": "^1.0.1",
     "express": "^4.0.0",
     "express-session": "^1.0.2",
-    "seneca": "~0.5.20",
+    "seneca": "~0.5.21",
     "seneca-account": "~0.1.8",
     "seneca-admin": "~0.1.4",
     "seneca-auth": "~0.3.0",
