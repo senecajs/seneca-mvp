@@ -4,7 +4,7 @@
   "description": "How to build a Minimim Viable Product with Seneca",
   "main": "mvp-app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No tests setup yet\" && exit 0"
   },
   "repository": {
     "type": "git",
