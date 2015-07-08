@@ -63,15 +63,23 @@
         <input type="password" class="form-control" id="password" placeholder="enter password" ng-model="input_password" tab-index="3">
       </div>
     </form>
-    <table id="loginbtns"><tr>
-       <td class="left"><a ng-class="{btn:true, 'btn-primary':true, mvp_seek_input:seek_signup, animated:true, fadeIn:fadein_signup, fadeOut:fadeout_signup}" href="#"  ng-click="signup()" tab-index="5">Sign Up &raquo;</a></td>
+    <table id="loginbtns">
+        <tr>
+            <td class="left"><a ng-class="{btn:true, 'btn-primary':true, mvp_seek_input:seek_signup, animated:true, fadeIn:fadein_signup, fadeOut:fadeout_signup}" href="#"  ng-click="signup()" tab-index="5">Sign Up &raquo;</a></td>
 
-       <td class="center"><a ng-class="{btn:true, 'btn-primary':true, mvp_hide:hide_cancel, animated:true, fadeIn:fadein_cancel, fadeOut:fadeout_cancel, float:float_cancel}" href="#"  ng-click="cancel()">Cancel</a></td>
+            <td class="center"><a ng-class="{btn:true, 'btn-primary':true, mvp_hide:hide_cancel, animated:true, fadeIn:fadein_cancel, fadeOut:fadeout_cancel, float:float_cancel}" href="#"  ng-click="cancel()">Cancel</a></td>
 
-       <td class="right"><a ng-class="{btn:true, 'btn-primary':true, mvp_seek_input:seek_signin, mvp_hide:hide_signin, animated:true, fadeIn:fadein_signin, fadeOut:fadeout_signin}" href="#"  ng-click="signin()" tab-index="4">Sign In &raquo;</a></td>
+            <td class="right"><a ng-class="{btn:true, 'btn-primary':true, mvp_seek_input:seek_signin, mvp_hide:hide_signin, animated:true, fadeIn:fadein_signin, fadeOut:fadeout_signin}" href="#"  ng-click="signin()" tab-index="4">Sign In &raquo;</a></td>
 
-       <td ng-class="{right:true,hide:hide_send}"><a ng-class="{btn:true, 'btn-primary':true, mvp_seek_input:seek_send, animated:true, fadeIn:fadein_send, fadeOut:fadeout_send}" href="#"  ng-click="send()">Send Reset &raquo;</a></td>
-    </tr></table>
+            <td ng-class="{right:true,hide:hide_send}"><a ng-class="{btn:true, 'btn-primary':true, mvp_seek_input:seek_send, animated:true, fadeIn:fadein_send, fadeOut:fadeout_send}" href="#"  ng-click="send()">Send Reset &raquo;</a></td>
+        </tr>
+        <tr>
+            <td colspan="4">or</td>
+        </tr>
+        <tr>
+            <td class="left"><a ng-class="{btn:true, 'btn-primary':true, mvp_seek_input:seek_signin, mvp_hide:hide_signin, animated:true, fadeIn:fadein_signin, fadeOut:fadeout_signin}" href="/auth/facebook" tab-index="4">Facebook Sign In &raquo;</a></td>
+        </tr>
+    </table>
     <p>
       <a ng-class="{mvp_hide:hide_forgot}" style="clear:both;float:right;margin-top:10px;" href="#" ng-click="forgot()">forgot password?</a>
     </p>

@@ -11,9 +11,7 @@ var bodyparser   = require('body-parser')
 var session      = require('express-session')
 
 
-var seneca = require('seneca')()
-
-
+var seneca = require('seneca')({log: 'print'})
 
 process.on('uncaughtException', function(err) {
   console.error('uncaughtException:', err.message)
@@ -21,21 +19,18 @@ process.on('uncaughtException', function(err) {
   process.exit(1)
 })
 
-
-
 seneca.use('options','options.mine.js')
 
 
 seneca.use('mem-store',{web:{dump:true}})
 
 seneca.use('user',{confirm:true})
-seneca.use('mail')
 seneca.use('auth')
 seneca.use('account')
 seneca.use('project')
 seneca.use('settings')
 seneca.use('data-editor')
-
+seneca.use('auth-token-cookie')
 
 
 seneca.ready(function(err){
@@ -83,12 +78,11 @@ seneca.ready(function(err){
 
   app.use( express.static(__dirname+options.main.public) )  
 
-
-
   var server = http.createServer(app)
 
   seneca.use('admin', {server:server,local:true});
 
+  console.log('Listen on ' + options.main.port)
   server.listen( options.main.port )
 
   seneca.log.info('listen',options.main.port)
