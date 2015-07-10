@@ -30,6 +30,8 @@
     "seneca-project": "~0.1.4",
     "seneca-settings": "~0.1.4",
     "seneca-user": "~0.2.10",
-    "seneca-auth-token-cookie": "mirceaalexandru/seneca-auth-token-cookie.git"
+    "seneca-auth-token-cookie": "mirceaalexandru/seneca-auth-token-cookie.git",
+    "seneca-google-auth": "~0.1.0",
+    "seneca-github-auth": "~0.1.1"
   }
 }
