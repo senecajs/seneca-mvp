@@ -25,12 +25,20 @@ seneca.use('options','options.mine.js')
 seneca.use('mem-store',{web:{dump:true}})
 
 seneca.use('user',{confirm:true})
+
 seneca.use('auth')
+seneca.use('auth-token-cookie')
+seneca.act({role:'options', cmd:'get'}, function(err, data){
+  seneca.use('seneca-facebook-auth', data.facebook)
+})
+seneca.act({role:'options', cmd:'get'}, function(err, data){
+  seneca.use('seneca-local-auth', data.local || {})
+})
+
 seneca.use('account')
 seneca.use('project')
 seneca.use('settings')
 seneca.use('data-editor')
-seneca.use('auth-token-cookie')
 
 
 seneca.ready(function(err){

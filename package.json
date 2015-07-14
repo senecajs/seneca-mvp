@@ -18,10 +18,14 @@
     "cookie-parser": "~1.3.3",
     "express": "~4.11.2",
     "express-session": "~1.10.2",
-    "seneca": "plugin",
+    "seneca": "^0.6.3",
     "seneca-account": "~0.1.8",
     "seneca-admin": "~0.2.0",
+    "seneca-facebook-auth": "mirceaalexandru/seneca-facebook-auth",
+    "seneca-local-auth": "mirceaalexandru/seneca-local-auth",
     "seneca-auth": "mirceaalexandru/seneca-auth.git#0.5.0",
+    "seneca-auth-mapFields": "mirceaalexandru/seneca-auth-mapFields.git",
+    "seneca-auth-token-cookie": "mirceaalexandru/seneca-auth-token-cookie.git",
     "seneca-data-editor": "~0.2.0",
     "seneca-facebook-auth": "^0.1.0",
     "seneca-jsonrest-api": "~0.3.1",
@@ -29,7 +33,6 @@
     "seneca-perm": "~0.4.0",
     "seneca-project": "~0.1.4",
     "seneca-settings": "~0.1.4",
-    "seneca-user": "~0.2.10",
-    "seneca-auth-token-cookie": "mirceaalexandru/seneca-auth-token-cookie.git"
+    "seneca-user": "~0.2.10"
   }
 }
