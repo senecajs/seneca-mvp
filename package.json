@@ -24,7 +24,6 @@
     "seneca-facebook-auth": "mirceaalexandru/seneca-facebook-auth",
     "seneca-local-auth": "mirceaalexandru/seneca-local-auth",
     "seneca-auth": "mirceaalexandru/seneca-auth.git#0.5.0",
-    "seneca-auth-mapFields": "mirceaalexandru/seneca-auth-mapFields.git",
     "seneca-auth-token-cookie": "mirceaalexandru/seneca-auth-token-cookie.git",
     "seneca-data-editor": "~0.2.0",
     "seneca-facebook-auth": "^0.1.0",
