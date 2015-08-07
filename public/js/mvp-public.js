@@ -66,7 +66,7 @@
       },
 
       instance: function(win,fail){
-        $http({method:'GET', url: '/auth/instance', cache:false}).
+        $http({method:'GET', url: '/auth/user', cache:false}).
           success(function(data, status) {
             if( win ) return win(data);
           }).
