@@ -8,10 +8,39 @@ module.exports = {
   },
 
   auth: {
-    // change to true if you want to send emails
-    sendemail:false
+    redirect: {
+      "login": {
+        win: '/account',
+        fail: '/',
+        always: true
+      }
+    }
   },
-
+  "facebook" : {
+    "appId" : "APP_ID",
+    "appSecret" : "APP_SECRET",
+    "urlhost" : "http://localhost:3333",
+    "serviceParams": {
+      "scope" : [
+        "email"
+      ]
+    }
+  },
+  "google" : {
+    "clientID" : "CLIENT_ID",
+    "clientSecret" : "CLIENT_SECRET",
+    "urlhost" : "http://localhost:3333"
+  },
+  "github" : {
+    "clientID" : "CLIENT_ID",
+    "clientSecret" : "CLIENT_SECRET",
+    "urlhost" : "http://localhost:3333"
+  },
+  "twitter" : {
+    "apiKey" : "APP_KEY",
+    "apiSecret" : "API_SECRET",
+    "urlhost" : "http://localhost:3333"
+  },
   mail: {
     mail: {from:'youremail@example.com'},
     config:{
