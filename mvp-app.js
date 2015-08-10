@@ -28,10 +28,11 @@ seneca.use('user',{confirm:true})
 
 seneca.use('auth')
 seneca.act({role:'options', cmd:'get'}, function(err, data){
-  seneca.use('seneca-facebook-auth', data.facebook || {})
-  seneca.use('seneca-google-auth', data.google || {})
-  seneca.use('seneca-github-auth', data.github || {})
-  seneca.use('seneca-local-auth', data.local || {})
+  seneca.use('facebook-auth', data.facebook || {})
+  seneca.use('google-auth', data.google || {})
+  seneca.use('github-auth', data.github || {})
+  seneca.use('twitter-auth', data.twitter || {})
+  seneca.use('local-auth', data.local || {})
 })
 
 seneca.use('account')
