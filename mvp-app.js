@@ -21,8 +21,7 @@ seneca.use('options', 'options.mine.js')
 
 seneca.use('mem-store', {web: {dump: true}})
 
-seneca.use('user', {confirm: true})
-
+seneca.use('user',{confirm:true})
 //seneca.use('mail')
 seneca.use('auth')
 
@@ -66,9 +65,10 @@ seneca.ready(function (err) {
 
   app.use(web)
 
-  app.use(function (req, res, next) {
-    if (0 == req.url.indexOf('/reset') ||
-      0 == req.url.indexOf('/confirm')) {
+  app.use( function( req, res, next ){
+    if( 0 == req.url.indexOf('/reset') ||
+        0 == req.url.indexOf('/confirm') ) 
+    {
       req.url = '/'
     }
 
@@ -90,4 +90,5 @@ seneca.ready(function (err) {
     seneca.listen()
   })
 })
+
 

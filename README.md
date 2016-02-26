@@ -6,10 +6,7 @@ How to build a Minimim Viable Product with Seneca
 ## Setup
 
 ```bash
-cp options.example.js options.mine.js
 npm install
-cd public
-bower install
 ```
 
 Edit options.mine.js as needed.
