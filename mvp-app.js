@@ -37,22 +37,10 @@ seneca.ready(function (err) {
   seneca.use('settings')
   seneca.use('data-editor')
 
-  //seneca.use('facebook-auth', options.facebook || {})
-  //seneca.use('google-auth', options.google || {})
-  //seneca.use('github-auth', options.github || {})
-  //seneca.use('twitter-auth', options.twitter || {})
-
-  var u = seneca.pin({role: 'user', cmd: '*'})
-  var projectpin = seneca.pin({role: 'project', cmd: '*'})
-
-  u.register({nick: 'u1', name: 'nu1', email: 'u1@example.com', password: 'u1', active: true}, function (err, out) {
-//    projectpin.save({data: {account: out.user.accounts[0], name: 'p1'}})
-    seneca.act('role:settings, cmd:save, kind:user, settings:{a:"aaa"}, ref:"' + out.user.id + '"')
-  })
-  u.register({nick: 'u2', name: 'nu2', email: 'u2@example.com', password: 'u2', active: true})
-  u.register({nick: 'a1', name: 'na1', email: 'a1@example.com', password: 'a1', active: true, admin: true})
-
-  seneca.act('role:settings, cmd:define_spec, kind:user', {spec: options.settings.spec})
+  seneca.use('facebook-auth', options.facebook || {})
+  seneca.use('google-auth', options.google || {})
+  seneca.use('github-auth', options.github || {})
+  seneca.use('twitter-auth', options.twitter || {})
 
   var web = seneca.export('web')
 
@@ -83,12 +71,27 @@ seneca.ready(function (err) {
 
 // should be sure that all plugins are fully loaded before starting server
   seneca.ready(function(){
+    loadDefaultData()
+    seneca.act('role:settings, cmd:define_spec, kind:user', {spec: options.settings.spec})
+
     console.log('Listen on ' + options.main.port)
     server.listen(options.main.port)
 
     seneca.log.info('listen', options.main.port)
     seneca.listen()
   })
+
+  function loadDefaultData(){
+    var u = seneca.pin({role: 'user', cmd: '*'})
+    var projectpin = seneca.pin({role: 'project', cmd: '*'})
+
+    u.register({nick: 'u1', name: 'nu1', email: 'u1@example.com', password: 'u1', active: true}, function (err, out) {
+      projectpin.save({data: {name: 'p1'}, account: out.user.accounts[0]})
+      seneca.act('role:settings, cmd:save, kind:user, settings:{a:"aaa"}, ref:"' + out.user.id + '"')
+    })
+    u.register({nick: 'u2', name: 'nu2', email: 'u2@example.com', password: 'u2', active: true})
+    u.register({nick: 'a1', name: 'na1', email: 'a1@example.com', password: 'a1', active: true, admin: true})
+  }
 })
 
 
