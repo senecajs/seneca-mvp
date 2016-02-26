@@ -31,7 +31,7 @@
   account_module.service('auth', function($http,$window) {
     return {
       instance: function(win,fail){
-        $http({method:'GET', url: '/auth/instance', cache:false}).
+        $http({method:'GET', url: '/auth/user', cache:false}).
           success(function(data, status) {
             if( win ) return win(data);
           }).
@@ -209,6 +209,9 @@
 
     $scope.update_user = function() {
       var data = read_user()
+      if ($scope.user){
+        data.orig_nick = $scope.user.nick
+      }
       auth.update_user( 
         data, 
         function( out ){

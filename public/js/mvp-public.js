@@ -52,8 +52,13 @@
       register: function(details,win,fail){
         $http({method:'POST', url: '/auth/register', data:details, cache:false}).
           success(function(data, status) {
-            if( win ) return win(data);
-            return $window.location.href='/account'
+            if (!data.ok){
+              $scope.msg = msgmap[data.why] || msgmap.unknown
+              $scope.showmsg = true
+            }else{
+              if( win ) return win(data);
+              return $window.location.href='/account'
+            }
           }).
           error(function(data, status) {
             if( fail ) return fail(data);
@@ -61,7 +66,7 @@
       },
 
       instance: function(win,fail){
-        $http({method:'GET', url: '/auth/instance', cache:false}).
+        $http({method:'GET', url: '/auth/user', cache:false}).
           success(function(data, status) {
             if( win ) return win(data);
           }).
