@@ -1,0 +1,51 @@
+{
+  "name": "seneca-mvp",
+  "version": "0.2.0",
+  "description": "How to build a Minimim Viable Product with Seneca",
+  "main": "mvp-app.js",
+  "scripts": {
+    "preinstall" : "cp -n options.example.js options.mine.js; true",
+    "prestart": "cd public; bower install",
+    "start": "node mvp-app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rjrodger/seneca-mvp.git"
+  },
+  "author": {
+    "name": "Richard Rodger",
+    "email": "richard@ricebridge.com",
+    "url": "http://richardrodger.com/"
+  },
+  "contributors": [
+    {
+      "name": "Mircea Alexandru",
+      "email": "mircea.alexandru@gmail.com",
+      "url": "https://github.com/mirceaalexandru"
+    }
+  ],
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "bell": "6.1.0",
+    "chairo": "2.x.x",
+    "hapi": "12.x.x",
+    "hapi-auth-cookie": "5.0.0",
+    "inert": "3.x.x",
+    "seneca": "1.2.x",
+    "seneca-account": "~0.1.8",
+    "seneca-auth": "1.0.0",
+    "seneca-data-editor": "~0.2.0",
+    "seneca-facebook-auth": "^0.1.0",
+    "seneca-github-auth": "mirceaalexandru/seneca-github-auth",
+    "seneca-google-auth": "mirceaalexandru/seneca-google-auth",
+    "seneca-twitter-auth": "mirceaalexandru/seneca-twitter-auth",
+    "seneca-jsonrest-api": "~0.3.1",
+    "seneca-local-auth": "~0.0.3",
+    "seneca-mail": "0.2.1",
+    "seneca-perm": "~0.4.0",
+    "seneca-project": "mirceaalexandru/seneca-project#fix",
+    "seneca-user": "1.0.0"
+  }
+}
