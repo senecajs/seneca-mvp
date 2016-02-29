@@ -256,7 +256,7 @@
 
 
   account_module.controller('TabView', function($scope, $route, $location, pubsub) {
-    var views = ['Dashboard','Projects','Settings','Account']
+    var views = ['Dashboard','Projects','Account']
 
     $scope.views = _.filter(views,function(n){return n!='Account'})
 

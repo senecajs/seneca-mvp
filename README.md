@@ -5,19 +5,8 @@ How to build a Minimim Viable Product with Seneca
 
 ## Setup
 
-```bash
-npm install
-```
-
-Edit options.mine.js as needed.
-
-
-## Run
-
-```bash
-npm start
-```
-
-And open [localhost:3333](http://localhost:3333)
-
-
+There are two project examples, each in its sub-folder:
+ - Hapi server, Chairo, seneca-web & seneca-auth & Angular
+ - Express server, seneca-web & seneca-auth & Angular
+ 
+Please check corresponding Readme file for details.
