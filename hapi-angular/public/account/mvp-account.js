@@ -2,14 +2,11 @@
   function noop(){for(var i=0;i<arguments.length;i++)if('function'==typeof(arguments[i]))arguments[i]()}
   function empty(val) { return null == val || 0 == ''+val }
 
-  var account_module = angular.module('account',['ngRoute','cookiesModule','senecaSettingsModule']).
+  var account_module = angular.module('account',['ngRoute','cookiesModule']).
         config(['$routeProvider', function($routeProvider) {
           $routeProvider.
             when('/Projects', {
               tab:'Projects'
-            }).
-            when('/Settings', {
-              tab:'Settings'
             }).
             when('/Account', {
               tab:'Account'
@@ -256,7 +253,7 @@
 
 
   account_module.controller('TabView', function($scope, $route, $location, pubsub) {
-    var views = ['Dashboard','Projects','Settings','Account']
+    var views = ['Dashboard','Projects','Account']
 
     $scope.views = _.filter(views,function(n){return n!='Account'})
 
