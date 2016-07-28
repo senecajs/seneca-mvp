@@ -4,7 +4,7 @@
   "description": "How to build a Minimim Viable Product with Seneca",
   "main": "mvp-app.js",
   "scripts": {
-    "preinstall" : "cp -n options.example.js options.mine.js; true",
+    "preinstall": "cp -n options.example.js options.mine.js; true",
     "prestart": "cd public; bower install",
     "start": "node mvp-app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -28,12 +28,6 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "bell": "6.1.0",
-    "chairo": "2.0.0",
-    "hapi": "12.x.x",
-    "hapi-auth-cookie": "5.0.0",
-    "inert": "3.x.x",
-
     "body-parser": "~1.11.0",
     "cookie-parser": "~1.3.3",
     "express": "~4.11.2",
