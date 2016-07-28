@@ -20,7 +20,7 @@ process.on('uncaughtException', function (err) {
 seneca.use('options', 'options.mine.js')
 
 seneca.use('mem-store', {web: {dump: true}})
-
+seneca.use('entity')
 seneca.use('user',{confirm:true})
 //seneca.use('mail')
 seneca.use('auth')
