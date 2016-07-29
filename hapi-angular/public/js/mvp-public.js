@@ -53,8 +53,7 @@
         $http({method:'POST', url: '/auth/register', data:details, cache:false}).
           success(function(data, status) {
             if (!data.ok){
-              $scope.msg = msgmap[data.why] || msgmap.unknown
-              $scope.showmsg = true
+              return fail(data);
             }else{
               if( win ) return win(data);
               return $window.location.href='/account'

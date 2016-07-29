@@ -66,7 +66,7 @@ server.register(plugins, function (err) {
 
 function initSeneca(seneca, done) {
   seneca.use('mem-store', {web: {dump: true}})
-
+  seneca.use('entity')
   seneca.use('user', {confirm: true})
   //seneca.use('mail')
   seneca.use('auth')
